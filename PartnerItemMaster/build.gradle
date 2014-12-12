@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        maven { url "https://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.10.RELEASE")
+    }
+}
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework:spring-context:4.1.2.RELEASE'
+    compile("org.springframework:spring-web")
+    compile("com.fasterxml.jackson.core:jackson-databind")
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.glassfish.external:commons-codec-repackaged:10.0-b28")
+    
+    testCompile("junit:junit")
+}
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+   }
+}
+
+jar {
+    baseName = 'PartnerItemMaster'
+    version =  '1.0.0'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2'
+}
