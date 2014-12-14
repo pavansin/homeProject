@@ -6,8 +6,8 @@ import org.springframework.web.client.RestTemplate;
 public class AmazonProductAdvertisingAPIDao {
 	
 	private static final String endpoint = "webservices.amazon.com";
-	private static final String AWSAccessKeyId="AKIAJGMJEKBOZGAARBUQ";
-	private static final String		AWSSecretKey="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";
+	private static final String AWSAccessKeyId;
+	private static final String AWSSecretKey;
 	private SignedRequestsHelper helper;
 	public AmazonProductAdvertisingAPIDao() {
 		try {
