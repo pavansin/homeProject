@@ -1,0 +1,84 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!--  JQUERY-UI (only sortable and datepicker is needed) -->
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css">
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!--  if timepicker is used in filters -->
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/jquery-ui-timepicker-addon.min.css"/>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui-timepicker-addon.min.js"></script>
+    <!--  if touch event support is needed (mobile devices) -->
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery.ui.touch-punch.min.js"></script>
+      
+    <!--  PAGINATION plugin -->
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/jquery.bs_pagination.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery.bs_pagination.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/gbs_pagination/localization/en.min.js"></script>
+     
+    <!--  FILTERS plugin --> 
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/jquery.jui_filter_rules.bs.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery.jui_filter_rules.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/gjui_filter_rules/localization/en.min.js"></script>
+    <!--  required from filters plugin -->
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/gmoment.min.js"></script>
+     
+    <!--  DATAGRID plugin -->
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/jquery.bs_grid.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery.bs_grid.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/gbs_grid/localization/en.min.js"></script>
+
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+        $('#entries_table').dataTable();
+    });
+    </script>
+
+    <title>Journal Entries</title>
+  </head>
+  <body>
+    <h1>Recent journal entries</h1>
+    <div class="table-responsive">
+        <table id="entries_table" class="display table" width="80%" align="left">
+        <thead>  
+          <tr>  
+            <th>Date</th>  
+            <th>Topic</th>  
+            <th>Note</th>  
+          </tr>  
+        </thead> 
+	<tbody>
+	{% for entry in entries %}
+	<tr> 
+	    <td>{{entry.event_date}}</td>
+	    <td>{{entry.topic.name}}</td>
+	    <td>{{entry.note}}</td>
+	</tr>
+	{% endfor %}
+	
+	</tbody>
+	</table>
+    </div>
+  </body> 
+</html>

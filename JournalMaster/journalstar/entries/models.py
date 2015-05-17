@@ -4,8 +4,8 @@ from django.db import models
 class Topic(models.Model):
 	name = models.CharField(max_length=1024);
 	last_updated = models.DateTimeField('date last updated');
-	def str():
-	    return name
+	def __str__(self):
+	    return self.name
 
 class Journal(models.Model):
 	topic = models.ForeignKey(Topic)
@@ -15,5 +15,5 @@ class Journal(models.Model):
 	note = models.CharField(max_length=1024);
 	last_updated = models.DateTimeField('date last updated');
 	last_updated_by = models.CharField(max_length=256);
-	def str():
-	    return topic.name + " " + note
+	def __str__(self):
+	    return self.topic.name + " " + self.note

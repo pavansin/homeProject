@@ -11,4 +11,3 @@ class EntriesViewTests(TestCase):
     response = client.get('/entries/')
     self.assertContains(response, 'Hello')
 
-
