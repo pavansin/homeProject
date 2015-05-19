@@ -1,0 +1,17 @@
+<html>
+<head>
+{% include "entries/header.html" %}
+</head>
+<h1>Add new Journal entry</h1>
+
+<form action="{% url 'entries:addEntry' %}" method="post">
+{% csrf_token %}
+<table>
+<tr><td>Journal date: </td><td><input type="date" name="entry_date" id="entry_date"/><br/></td></tr>
+<tr><td>Start time (optional): </td><td><input type="startTime" name="start_time" id="start_time"/><br/></td></tr>
+<tr><td>End time (optional): </td><td><input type="endTime" name="end_time" id="end_time"/><br/></td></tr> 
+<tr><td>Journal entry:</td><td><textarea name="journal_entry" id="journal_entry" cols="50" rows="5" style="width:200px; height:100px;" value=""> </textarea> <br/> </td></tr>
+</table>
+<input type="submit" value="Submit"/>
+</form>
+
