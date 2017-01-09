@@ -22,11 +22,6 @@ apply plugin: 'com.moowork.node'
 apply plugin: 'com.moowork.gulp'
 apply plugin: 'war'
 
-jar {
-    baseName = 'fiona-webapp'
-    version =  '1.0.0'
-}
-
 node {
     version = '6.9.1'
     npmVersion = '3.10.8'
@@ -35,8 +30,8 @@ node {
 }
 
 war {
-    baseName = 'gradlenpm'
-    version = '0.0.1-SNAPSHOT'
+    baseName = 'fiona-webapp'
+    version = '1.0.0-SNAPSHOT'
 }
 
 repositories {
@@ -48,6 +43,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
@@ -57,22 +53,18 @@ dependencies {
 }
 
 task clientDependenciesDev(type: NpmTask) {
-    args = ['install', 'gulp-jshint', 'jshint', 'gulp-sass', 'gulp-concat', 'gulp-uglify', 'gulp-rename', '--save-dev']
+    args = ['install']
 }
 
-task clientDependencies(type: NpmTask, dependsOn: 'clientDependenciesDev') {
-    args = ['install', '--save', 'react', 'react-dom']
-}
-
-build.dependsOn 'clientDependencies', gulp_default
+build.dependsOn clientDependenciesDev, gulp_default
 
 task buildDocker(type: Docker, dependsOn: build) {
     push = false
-    applicationName = jar.baseName
+    applicationName = war.baseName
     dockerfile = file('src/main/docker/Dockerfile')
     doFirst {
         copy {
-            from jar
+            from war
             into stageDir
         }
     }
