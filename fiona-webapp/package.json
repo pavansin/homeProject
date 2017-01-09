@@ -1,0 +1,34 @@
+{
+  "name": "fiona-webapp",
+  "version": "1.0.0",
+  "description": "Fiona webapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavansin/homeProject.git"
+  },
+  "keywords": [
+    "fiona"
+  ],
+  "author": "Pavan Singitham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pavansin/homeProject/issues"
+  },
+  "homepage": "https://github.com/pavansin/homeProject#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.0.0",
+    "gulp-uglify": "^2.0.0",
+    "jshint": "^2.9.4"
+  }
+}
