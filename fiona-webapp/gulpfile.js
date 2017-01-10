@@ -1,45 +1,40 @@
-// Include gulp
+'use strict';
+
+var watchify = require('watchify');
+var browserify = require('browserify');
 var gulp = require('gulp');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var gutil = require('gulp-util');
+var sourcemaps = require('gulp-sourcemaps');
+var assign = require('lodash.assign');
+var babel = require('babelify');
 
-// Include Our Plugins
-var jshint = require('gulp-jshint');
-var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
+var b = function() {
+    return browserify({
+        cache: {},
+        packageCache: {},
+        entries: ['./src/main/js/app.js'],
+        debug: true,
+        transform: [babel]
+    });
+};
 
-// Lint Task
-gulp.task('lint', function() {
-    return gulp.src('src/main/js/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
-});
+var w = watchify(b());
 
-// Compile Our Sass
-/*
-gulp.task('sass', function() {
-    return gulp.src('scss/*.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('dist/css'));
-});
-*/
+w.on('log', gutil.log);
 
-// Concatenate & Minify JS
-// Minify doesn't work with ES6
-/*
-gulp.task('scripts', function() {
-    return gulp.src('src/main/js/*.js')
-        .pipe(concat('all.js'))
-        .pipe(gulp.dest('web-build'))
-        .pipe(uglify())
-        .pipe(gulp.dest('web-build/js'));
-});
-*/
-// Watch Files For Changes
+var bundle = function(pkg) {
+    return pkg.bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest('src/main/resources/static/built-js'));
+};
+
 gulp.task('watch', function() {
-    gulp.watch('src/main/js/*.js', ['lint', 'scripts']);
-    //gulp.watch('scss/*.scss', ['sass']);
+    bundle(w);
+    w.on('update', bundle.bind(null, w));
 });
 
-// Default Task
-gulp.task('default', ['lint']);
+gulp.task('build', bundle.bind(null, b()));
+
+gulp.task('default', ['watch']);

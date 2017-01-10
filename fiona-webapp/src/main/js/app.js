@@ -6,7 +6,8 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 
 class App extends React.Component {
-    render : function() {
+
+    render() {
         return (
             React.DOM.span(null, "Hello from react land")
         )
@@ -14,6 +15,6 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-    <App />,
+    React.DOM.h1(null, "working now"),
     document.getElementById('react')
-)
+);
