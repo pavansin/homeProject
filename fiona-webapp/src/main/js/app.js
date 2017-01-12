@@ -4,17 +4,18 @@
 'use strict';
 const React = require('react');
 const ReactDOM = require('react-dom');
+const NavBar = require('./navbar.js');
 
 class App extends React.Component {
 
     render() {
         return (
-            React.DOM.span(null, "Hello from react land")
+            React.createElement(NavBar)
         )
     }
 }
 
 ReactDOM.render(
-    React.DOM.h1(null, "working now"),
+    React.createElement(App),
     document.getElementById('react')
 );

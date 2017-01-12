@@ -52,7 +52,7 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
-build.dependsOn gulp_build
+compileJava.dependsOn gulp_build
 
 task buildDocker(type: Docker, dependsOn: build) {
     push = false

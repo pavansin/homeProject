@@ -8,15 +8,18 @@ var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
-var babel = require('babelify');
+var babelify  = require('babelify');
+var transform_jsx = require('babel-plugin-transform-react-jsx');
+var babel = require('gulp-babel');
+
 
 var b = function() {
     return browserify({
         cache: {},
         packageCache: {},
-        entries: ['./src/main/js/app.js'],
+        entries: ['src/main/js/app.js', 'src/main/js/navbar.js', 'src/main/js/searchBox.js'],
         debug: true,
-        transform: [babel]
+        transform: [babelify]
     });
 };
 
